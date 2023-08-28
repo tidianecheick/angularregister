@@ -1,0 +1,59 @@
+<div class="card">
+  <div class="card-header text-white bg-info">
+   S'enregister
+  </div>
+  <div class="card-body">
+  <form novalidate (ngSubmit)="saveData(registerForm)" #registerForm="ngForm">
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label >Nom</label>
+        <input type="text" class="form-control" placeholder="Nom"
+        [(ngModel)]="user.lastName" name="lastName" required minlength="4" #lastNameVar="ngModel"
+        [ngClass]="{'is-invalid':lastNameVar.touched &&! lastNameVar.valid}" >
+         <div class="invalid-feeback">
+           <span *ngIf="lastNameVar.hasError('required')">
+            Entrez votre nom
+           </span>
+           <span *ngIf="lastNameVar.errors?.['minlength']">
+            Entrez au minimum 4 caractères
+           </span>
+         </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label >Prenom</label>
+        <input type="text" class="form-control" placeholder="Prenom"
+        [(ngModel)]="user.firstName" name="firstName" required maxlength="10"#firstNameVar="ngModel"
+        [ngClass]="{'is-invalid': firstNameVar.touched&& !firstNameVar.valid}">
+        <div class="invalid-feeback">
+          <span *ngIf="firstNameVar.hasError('required')">
+           Entrez votre prénom
+          </span>
+          <span *ngIf="firstNameVar.errors?.['maxlength']">
+           Entrez au maximum 10 caractères
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label >E-mail</label>
+        <input type="email" class="form-control" placeholder="E-mail"
+        [(ngModel)]="user.email" #emailVar="ngModel" name="email" required email
+        [ngClass]="{'is-invalid':emailVar.touched &&! emailVar.valid }">
+        <div class="invalid-feeback">
+          <span *ngIf="emailVar.hasError('required')">
+           Entrez votre E-mail
+          </span>
+          <span *ngIf="emailVar.errors?.['email']">
+           l'E-mail n'est pas valide
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="text-rigth">
+      <button class="btn btn-info" type="submit">Sauvegarder</button>
+    </div>
+  </form>
+  </div>
+ </div>
+
